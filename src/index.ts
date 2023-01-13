@@ -1,5 +1,5 @@
 const geeting = (name: string) => {
-  console.log(`Hello ${name} from TypeScript.`);
+    console.log(`Hello ${name} from TypeScript.`);
 };
 
-geeting("Ball");
+geeting('Ball');
