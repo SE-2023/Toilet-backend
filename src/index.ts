@@ -1,10 +1,28 @@
+import express, { response } from 'express';
+import authRouters from './routes/authRoute';
 import dotenv from 'dotenv';
-import { connectMongoDB } from './lib/mongoDB';
+import cors from 'cors';
+import locationRouters from './routes/location';
+import { connectMongoDB } from './config/mongoDB';
+
 dotenv.config();
+
 connectMongoDB();
 
-const geeting = (name: string) => {
-    console.log(`Hello 123456 ${name} from TypeScript.`);
-};
+const app = express();
+app.use(express.json());
+const PORT = process.env.PORT || 4000;
 
-geeting('Ball');
+const appStart = () => {
+    console.log('server is running', PORT);
+};
+app.get('/', (req, res) => {
+    res.json({ messsage: 'hello' });
+});
+
+app.use('/auth', authRouters);
+app.use('/location', locationRouters);
+
+app.listen(PORT, appStart);
+
+console.log('Hello worlddadada');
