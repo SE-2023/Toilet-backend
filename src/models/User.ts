@@ -5,7 +5,9 @@ interface IUserDocument extends Document {
     lastname: string;
     email: string;
     password: string;
+    hash: string;
     salt: string;
+    profilepicture:string;
 }
 
 const options: SchemaOptions = {
@@ -44,9 +46,17 @@ const userSchema = new Schema(
             type: String,
             require: true
         },
+        hash: {
+            type: String,
+            require: false
+        },
         salt: {
             type: String,
             require: true
+        },
+        profilepicture: {
+            type: String,
+            default: "http://res.cloudinary.com/di71vwint/image/upload/v1674291349/images/nsopymczagslnr78yyv5.png",
         }
     },
     options
