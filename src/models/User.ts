@@ -65,3 +65,4 @@ const userSchema = new Schema(
 const User = model<IUserDocument>('users', userSchema);
 
 export default User;
+
