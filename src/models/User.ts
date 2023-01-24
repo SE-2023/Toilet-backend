@@ -4,20 +4,19 @@ interface IUserDocument extends Document {
     firstname: string;
     lastname: string;
     email: string;
-    password: string;
     hash: string;
     salt: string;
-    profilepicture:string;
+    profile_picture:string;
 }
 
 const options: SchemaOptions = {
     toJSON: {
         transform(doc, ret) {
             delete ret._id;
-            delete ret.password;
+            delete ret.hash;
             delete ret.salt;
-            delete ret.createAt;
-            delete ret.updateAt;
+            delete ret.createdAt;
+            delete ret.updatedAt;
         }
     },
     timestamps: true
@@ -54,7 +53,7 @@ const userSchema = new Schema(
             type: String,
             require: true
         },
-        profilepicture: {
+        profile_picture: {
             type: String,
             default: "http://res.cloudinary.com/di71vwint/image/upload/v1674291349/images/nsopymczagslnr78yyv5.png",
         }
