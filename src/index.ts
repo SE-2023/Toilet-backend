@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import expressSession from 'express-session';
 import locationRouters from './routes/location';
-import userRouters from './routes/userRoute'
+import userRouters from './routes/userRoute';
 import { connectMongoDB } from './config/mongoDB';
 
 dotenv.config();
@@ -20,10 +20,9 @@ const app = express();
 app.use(express.json());
 app.use(
     expressSession({
-        secret: 'secret'
+        secret: 'secret',
     })
 );
-
 
 const PORT = process.env.PORT || 4000;
 
@@ -36,11 +35,11 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authRouters);
 app.use('/location', locationRouters);
-app.use('/user', userRouters)
+app.use('/user', userRouters);
 
 app.listen(PORT, appStart);
 
-console.log('Hello worlddadada');
+console.log('Hello worlddddd');
 
 // import mongoose from 'mongoose';
 // const User = mongoose.model('users')
