@@ -18,16 +18,16 @@ const validatePassword = async (enterPassword: string, hash: string, salt: strin
 export const signup = async (req: Request, res: Response) => {
     console.log('createUser work!');
     const body = req.body;
-    try{
+    try {
         const salt = await genrateSalt();
         const hash = await generatePassword(body.password, salt);
 
         body.hash = hash;
         body.salt = salt;
 
-        const existingUser = await User.findOne({ email: body.email })
-        if(existingUser){
-            return res.status(400).json({massage:"The user already exists"})
+        const existingUser = await User.findOne({ email: body.email });
+        if (existingUser) {
+            return res.status(400).json({ massage: 'The user already exists' });
         }
 
         const user = await User.create(body);
@@ -35,12 +35,11 @@ export const signup = async (req: Request, res: Response) => {
         const token = jwt.sign(tokenData, process.env.JWT_SECRET!, { expiresIn: '1d' });
 
         res.status(201).json({ message: 'created', token: token });
-    }catch(error){
+    } catch (error) {
         console.log(error);
         res.status(500);
     }
 };
-
 
 export const signin = async (req: Request, res: Response) => {
     console.log('signin con');
@@ -63,4 +62,15 @@ export const signin = async (req: Request, res: Response) => {
         console.log(error);
         res.status(500);
     }
+};
+
+export const getProfile = async (req: Request, res: Response) => {
+    const uid = req.session.uid;
+    console.log(uid);
+    const user = await User.findById(uid);
+
+    res.status(200).json({
+        message: 'success',
+        data: user,
+    });
 };
