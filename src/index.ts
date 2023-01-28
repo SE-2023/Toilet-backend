@@ -21,9 +21,11 @@ app.use(express.json());
 app.use(
     expressSession({
         secret: 'secret',
+        resave: true,
+        saveUninitialized: true,
     })
 );
-
+app.use(cors());
 const PORT = process.env.PORT || 4000;
 
 const appStart = () => {
@@ -40,22 +42,3 @@ app.use('/user', userRouters);
 app.listen(PORT, appStart);
 
 console.log('Hello worlddddd');
-
-// import mongoose from 'mongoose';
-// const User = mongoose.model('users')
-// app.post('/update', (req: express.Request, res: express.Response) => {
-//     User.findByIdAndUpdate(req.body.id, {
-//         firstname: req.body.firstname,
-//         lastname: req.body.lastname,
-//         email: req.body.email,
-//         password: req.body.password,
-//         hash: req.body.hash,
-//         salt: req.body.salt,
-//         profilepicture:req.body.profilepicture
-//     }).then((data) => {
-//         console.log(data);
-//         res.send(data);
-//     }).catch((err) => {
-//         console.log("error", err);
-//     });
-// });

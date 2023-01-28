@@ -3,7 +3,7 @@ import { updateUser, deleteUser } from '../controllers/userController';
 
 const router = express.Router();
 
-router.post('/updateUser', updateUser);
-router.post('/deleteUser', deleteUser);
+router.put('/:uid', updateUser);
+router.delete('/', deleteUser);
 
 export default router;
