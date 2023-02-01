@@ -6,18 +6,20 @@ import expressSession from 'express-session';
 import locationRouters from './routes/location';
 import userRouters from './routes/userRoute';
 import { connectMongoDB } from './config/mongoDB';
+import bodyParser from 'body-parser';
 
 dotenv.config();
 
 connectMongoDB();
-
+import './utils/cloudinary';
 declare module 'express-session' {
     interface SessionData {
         [key: string]: any;
     }
 }
 const app = express();
-app.use(express.json());
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(
     expressSession({
         secret: 'secret',
