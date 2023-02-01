@@ -20,7 +20,7 @@ export const updateUser = async (req: Request, res: Response) => {
         // password: req.body.password,
         // hash: req.body.hash,
         // salt: req.body.salt,
-        // profilepicture:req.body.profilepicture
+        profilepicture: req.body.profilepicture,
     })
         .then((data) => {
             console.log(data);
