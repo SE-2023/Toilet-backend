@@ -54,9 +54,9 @@ const userSchema = new Schema(
         },
         profile_picture: {
             type: String,
-            // default:
-            //     'http://res.cloudinary.com/di71vwint/image/upload/v1674291349/images/nsopymczagslnr78yyv5.png',
-            require: false,
+            default:
+                'http://res.cloudinary.com/di71vwint/image/upload/v1674291349/images/nsopymczagslnr78yyv5.png',
+            // require: false,
         },
     },
     options
