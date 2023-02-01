@@ -1,17 +1,20 @@
 import express, { response } from 'express';
-import authRouters from './routes/authRoute';
+
 import dotenv from 'dotenv';
 import cors from 'cors';
 import expressSession from 'express-session';
-import locationRouters from './routes/location';
-import userRouters from './routes/userRoute';
-import { connectMongoDB } from './config/mongoDB';
+
 import bodyParser from 'body-parser';
 
-dotenv.config();
+dotenv.config({ path: '.env' });
 
+import { connectMongoDB } from './config/mongoDB';
 connectMongoDB();
-import './utils/cloudinary';
+
+import locationRouters from './routes/location';
+import userRouters from './routes/userRoute';
+import authRouters from './routes/authRoute';
+
 declare module 'express-session' {
     interface SessionData {
         [key: string]: any;
