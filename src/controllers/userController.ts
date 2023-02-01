@@ -14,12 +14,9 @@ import { uploadImage } from '../utils/cloudinary';
 export const updateUser = async (req: Request, res: Response) => {
     try {
         const uid = req.params.uid;
-        const { secure_url } = await uploadImage(
-            'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAABLAAAAMgBAMAAADBzoYxAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAElBMVEWlGTHarLb09fiysb4tKkr///9uOvC6AAAAAWJLR0QF+G/pxwAAAAd0SU1FB+cBFhAHEMFXhboAAARaSURBVHja7dIxEQAgAAOxWsACFrCAf01YYKALl0j4+wQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgP8MKMiEAmNhLIyFscBYGAtjgbEwFsYCY2EsjAXGwlgYC4yFsTAWGAtjYSwwFsbCWGAsjIWxwFgYC2OBsTAWxgJjYSyMBcbCWBgLjIWxMBYYC2NhLDAWxsJYYCyMhbHAWBgLY4GxMBbGAmNhLIwFxsJYGAuMhbEwFhgLY2EsMBbGwlhgLIyFscBYGAtjgbEwFsYCY2EsjAXGwlgYC2OBsTAWxgJjYSyMBcbCWBgLjIWxMBYYC2NhLDAWxsJYYCyMhbHAWBgLY4GxMBbGAmNhLIwFxsJYGAuMhbEwFhgLY2EsMBbGwlhwP9aCgmwoMBbGwlgYC4yFsTAWGAtjYSwwFsbCWGAsjIWxwFgYC2OBsTAWxgJjYSyMBcbCWBgLjIWxMBYYC2NhLDAWxsJYYCyMhbHAWBgLY4GxMBbGAmNhLIwFxsJYGAuMhbEwFhgLY2EsMBbGwlhgLIyFscBYGAtjgbEwFsYCY2EsjAXGwlgYC4yFsTAWGAtjYSwwFsbCWGAsjIWxMBYYC2NhLDAWxsJYYCyMhbHAWBgLY4GxMBbGAmNhLIwFxsJYGAuMhbEwFhgLY2EsMBbGwlhgLIyFscBYGAtjgbEwFsYCY2EsjAXGwlgYC4yFsTAWGAtjYSwwFsbCWGAsjIWxwFgYC2OBsTAWxgJjYSyMBcbCWBgLjIWxMBYYC2NhLDAWxsJYYCyMhbHAWBgLY2EsCTAWxsJYYCyMhbHAWBgLY4GxMBbGAmNhLIwFxsJYGAuMhbEwFhgLY2EsMBbGwlhgLIyFscBYGAtjgbEwFsYCY2EsjAXGwlgYC4yFsTAWGAtjYSwwFsbCWGAsjIWxwFgYC2OBsTAWxgJjYSyMBcbCWBgLjIWxMBYYC2NhLDAWxsJYYCyMhbHAWBgLY4GxMBbGAmNhLIyFscBYGAtjweuxFhRkQoGxMBbGwlhgLIyFscBYGAtjgbEwFsYCY2EsjAXGwlgYC4yFsTAWGAtjYSwwFsbCWGAsjIWxwFgYC2OBsTAWxgJjYSyMBcbCWBgLjIWxMBYYC2NhLDAWxsJYYCyMhbHAWBgLY4GxMBbGAmNhLIwFxsJYGAuMhbEwFhgLY2EsMBbGwlhgLIyFscBYGAtjgbEwFsYCY2EsjIWxwFgYC2OBsTAWxgJjYSyMBcbCWBgLjIWxMBYYC2NhLDAWxsJYYCyMhbHAWBgLY4GxMBbGAmNhLIwFxsJYGAuMhbEwFhgLY2EsuB9rQEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPjPAeoeFJjlkbF7AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTAxLTIyVDE2OjA3OjE2KzAwOjAwwdbuOAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wMS0yMlQxNjowNzoxNiswMDowMLCLVoQAAAAASUVORK5CYII='
-        );
+        const { secure_url } = await uploadImage(req.body.profile_picture);
         console.log(secure_url);
-        return;
-        const picture_name = secure_url.split('/').pop();
+        // const picture_name = secure_url.split('/').pop();
         await User.findByIdAndUpdate(uid, {
             firstname: req.body.firstname,
             lastname: req.body.lastname,
@@ -28,7 +25,7 @@ export const updateUser = async (req: Request, res: Response) => {
             // password: req.body.password,
             // hash: req.body.hash,
             // salt: req.body.salt,
-            profile_picture: picture_name,
+            profile_picture: secure_url,
         })
 
             .then((data) => {
