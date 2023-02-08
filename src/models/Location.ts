@@ -14,25 +14,25 @@ const options: SchemaOptions = {
             // delete ret.salt;
             // delete ret.createAt;
             // delete ret.updateAt;
-        }
+        },
     },
-    timestamps: true
+    timestamps: true,
 };
 
 const locationSchema = new Schema(
     {
         latitude: {
             type: Number,
-            require: true
+            require: true,
         },
         longitude: {
             type: Number,
-            require: true
+            require: true,
         },
         title: {
             type: String,
-            require: true
-        }
+            require: true,
+        },
     },
     options
 );
