@@ -4,6 +4,14 @@ interface ILocationDocument extends Document {
     latitude: number;
     longitude: number;
     title: string;
+    contact: string;
+    cost: string;
+    handicap: boolean;
+    free: boolean;
+    type: string;
+    timeOpen: string;
+    timeClose: string;
+    toiletpicture: string[];
 }
 
 const options: SchemaOptions = {
@@ -32,6 +40,38 @@ const locationSchema = new Schema(
         title: {
             type: String,
             require: true,
+        },
+        contact: {
+            type: String,
+            require: true,
+        },
+        cost: {
+            type: String,
+            require: true,
+        },
+        handicap: {
+            type: Boolean,
+            require: true,
+        },
+        free: {
+            type: Boolean,
+            require: true,
+        },
+        type: {
+            type: String,
+            require: true,
+        },
+        timeOpen: {
+            type: String,
+            require: true,
+        },
+        timeClose: {
+            type: String,
+            require: true,
+        },
+        toiletpicture: {
+            type: Array,
+            require: false,
         },
     },
     options
