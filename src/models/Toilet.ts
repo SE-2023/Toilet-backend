@@ -6,6 +6,7 @@ interface IUserDocument extends Document {
     longitude: number;
     desc: string;
     contact: string;
+    free: boolean;
     cost: string;
     handicap: boolean;
     free: boolean;
@@ -31,6 +32,7 @@ const options: SchemaOptions = {
 
 const toiletSchema = new Schema(
     {
+<<<<<<< Updated upstream
         name: {
             type: String,
             require: true,
@@ -83,6 +85,52 @@ const toiletSchema = new Schema(
             type: Boolean,
             require: true,
         },
+=======
+      name: {
+        type: String,
+        require: true
+      },
+      latitude: {
+        type: Number,
+        require: true
+      },
+      longitude: {
+        type: Number,
+        require: true
+      },
+      contact: {
+        type: String,
+        require: true
+      },
+      free: {
+        type: Boolean,
+        required: true
+      },
+      cost: {
+        type: String,
+        require: false
+      },
+      handicap: {
+        type: Boolean,
+        require: true
+      },
+      type: {
+        type: String,
+        require: true
+      },
+      timeOpen: {
+        type: String,
+        require: true
+      },
+      timeClose: {
+        type: String,
+        require: true
+      },
+      toiletpicture: {
+        type: Array,
+        require: true
+      },
+>>>>>>> Stashed changes
     },
     options
 );
