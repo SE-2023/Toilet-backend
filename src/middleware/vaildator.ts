@@ -43,7 +43,13 @@ export const signUpValidation = () => [
 export const validate = (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+        const error_validated = errors.array().map( (item:any) => {
+            return {
+                param : item.param,
+                msg : item.msg
+            }
+        })
+      return res.status(422).json({ errors: error_validated });
     }
     next();
 };

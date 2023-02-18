@@ -29,7 +29,12 @@ export const signup = async (req: Request, res: Response) => {
 
         const existingUser = await User.findOne({ email: body.email });
         if (existingUser) {
-            return res.status(400).json({ massage: 'The user already exists' });
+            return res.status(400).json({ 
+                errors : [{
+                    msg : "The user already exists",
+                    param : "email"
+                }]
+            });
         }
 
         const user = await User.create(body);
