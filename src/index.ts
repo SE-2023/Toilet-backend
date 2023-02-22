@@ -1,12 +1,12 @@
 import express from 'express';
-
 import dotenv from 'dotenv';
 import cors from 'cors';
 import expressSession from 'express-session';
-
 import bodyParser from 'body-parser';
 
-dotenv.config({ path: '.env' });
+// dotenv.config({ path: '.env' });
+// dotenv.config();
+dotenv.config({ path: process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : `.env` });
 
 import { connectMongoDB } from './config/mongoDB';
 connectMongoDB();
@@ -36,6 +36,7 @@ const PORT = process.env.PORT || 4000;
 
 const appStart = () => {
     console.log('server is running', PORT);
+    // console.log(`.env.${process.env.NODE_ENV}`);
 };
 app.get('/', (req, res) => {
     res.json({ messsage: 'hello' });

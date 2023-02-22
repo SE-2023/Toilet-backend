@@ -6,9 +6,9 @@ interface IUserDocument extends Document {
     longitude: number;
     desc: string;
     contact: string;
+    free: boolean;
     cost: string;
     handicap: boolean;
-    free: boolean;
     createBy: string;
     type: string;
     timeOpen: string;

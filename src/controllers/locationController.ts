@@ -11,6 +11,10 @@ export const createLocation = async (req: Request, res: Response) => {
 
 export const getAllLocation = async (req: Request, res: Response) => {
     console.log('getAllLocation work!');
+
+    const query = req.query;
+    console.log('query: ', query);
+    
     const data = await Location.find();
     res.status(200).json({
         message: 'success',
