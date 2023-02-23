@@ -1,4 +1,4 @@
-import { Document, model, Schema, SchemaOptions } from 'mongoose';
+import { Document, model, ObjectId, Schema, SchemaOptions } from 'mongoose';
 
 interface IUserDocument extends Document {
     name: string;
@@ -9,7 +9,7 @@ interface IUserDocument extends Document {
     free: boolean;
     cost: string;
     handicap: boolean;
-    createBy: string;
+    createBy: ObjectId;
     type: string;
     timeOpen: string;
     timeClose: string;
@@ -76,7 +76,8 @@ const toiletSchema = new Schema(
             require: false,
         },
         createBy: {
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: 'User',
             require: true,
         },
         free: {
