@@ -40,6 +40,27 @@ export const signUpValidation = () => [
         .withMessage('Passwords do not match'),
 ];
 
+export const toiletValidation = () => [
+    body('Placename')
+        .not().isEmpty()
+        .withMessage('Placename is required')
+        .bail()
+        .isLength({ min: 3, max: 20 })
+        .withMessage('Placename must be between 3 and 20 characters'),
+    body('contact')
+        .not().isEmpty()
+        .withMessage('Last name is required')
+        .bail()
+        .isLength({ min: 3, max: 20 })
+        .withMessage('Last name must be between 3 and 20 characters'),
+    body('cost')
+        .not().isEmpty()
+        .withMessage('Phone number is required')
+        .bail()
+        .isMobilePhone('any')
+        .withMessage('Invalid phone number'),
+];
+
 export const validate = (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

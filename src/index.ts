@@ -15,6 +15,8 @@ import locationRouters from './routes/location';
 import userRouters from './routes/userRoute';
 import authRouters from './routes/authRoute';
 import toiletRouters from './routes/toiletRoute';
+import searchRouters from './routes/searchRoute';
+
 
 declare module 'express-session' {
     interface SessionData {
@@ -46,6 +48,7 @@ app.use('/auth', authRouters);
 app.use('/location', locationRouters);
 app.use('/user', userRouters);
 app.use('/toilet', toiletRouters);
+app.use('/search', searchRouters);
 
 app.listen(PORT, appStart);
 
