@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import Toilet from '../models/Toilet';
 import { uploadImage } from '../utils/cloudinary';
 export const createToilet = async (req: Request, res: Response) => {
-    const { secure_url } = await uploadImage(req.body.profile_picture);
+    const { secure_url } = await uploadImage(req.body.toiletpicture);
     console.log(secure_url);
     console.log('createToilet work!');
     const body = req.body;
