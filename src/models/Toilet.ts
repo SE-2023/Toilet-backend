@@ -13,7 +13,7 @@ interface IUserDocument extends Document {
     type: string;
     timeOpen: string;
     timeClose: string;
-    toiletpicture: string[];
+    toiletpicture: string;
 }
 
 const options: SchemaOptions = {
@@ -68,7 +68,7 @@ const toiletSchema = new Schema(
             require: true,
         },
         toiletpicture: {
-            type: Array,
+            type: String,
             require: false,
         },
         desc: {
