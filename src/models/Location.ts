@@ -11,7 +11,7 @@ interface ILocationDocument extends Document {
     type: string;
     timeOpen: string;
     timeClose: string;
-    toiletpicture: string[];
+    toiletpicture: string;
 }
 
 const options: SchemaOptions = {
@@ -70,7 +70,7 @@ const locationSchema = new Schema(
             require: true,
         },
         toiletpicture: {
-            type: Array,
+            type: String,
             require: false,
         },
     },
