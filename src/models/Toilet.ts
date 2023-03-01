@@ -1,7 +1,7 @@
 import { Document, model, Schema, SchemaOptions } from 'mongoose';
 
 interface IUserDocument extends Document {
-    name: string;
+    title: string;
     latitude: number;
     longitude: number;
     desc: string;
