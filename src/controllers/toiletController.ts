@@ -7,7 +7,7 @@ export const createToilet = async (req: Request, res: Response) => {
     console.log('createToilet work!');
     const body = req.body;
     await Toilet.create({
-        name: req.body.name,
+        title: req.body.title,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
         desc: req.body.desc,
@@ -23,5 +23,15 @@ export const createToilet = async (req: Request, res: Response) => {
     });
     res.status(201).json({
         message: 'createdToiletByUser',
+    });
+};
+
+export const getAlltoiletPrivate = async (req: Request, res: Response) => {
+    console.log('getAlltoiletPrivate work!');
+
+    const data = await Toilet.find();
+    res.status(200).json({
+        message: 'success',
+        data: data,
     });
 };

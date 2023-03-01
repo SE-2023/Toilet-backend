@@ -1,7 +1,7 @@
 import { Document, model, ObjectId, Schema, SchemaOptions } from 'mongoose';
 
 interface IUserDocument extends Document {
-    name: string;
+    title: string;
     latitude: number;
     longitude: number;
     desc: string;
@@ -31,7 +31,7 @@ const options: SchemaOptions = {
 
 const toiletSchema = new Schema(
     {
-        name: {
+        title: {
             type: String,
             require: true,
         },
