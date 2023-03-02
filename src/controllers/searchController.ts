@@ -9,7 +9,7 @@ export const searchToilet= async (req: Request, res: Response) => {
   console.log('query: ', query.title);
   
   try {
-    if(query.title !== ''){
+    if(query.title !== ""){
       const regexQuery = { title: { $regex: new RegExp(String(query.title), 'i') } };
       const dataPublicToilet = await Location.find(regexQuery).lean().exec();
       const dataPrivateToilet = await Toilet.find(regexQuery).lean().exec();
