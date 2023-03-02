@@ -9,16 +9,26 @@ export const searchToilet= async (req: Request, res: Response) => {
   console.log('query: ', query.title);
   
   try {
-    const regexQuery = { title: { $regex: new RegExp(String(query.title), 'i') } };
-    const dataPublicToilet = await Location.find(regexQuery).lean().exec();
-    const dataPrivateToilet = await Toilet.find(regexQuery).lean().exec();
-    res.status(200).json({
-        message: 'success',
-        publicToilet: dataPublicToilet,
-        privateToilet: dataPrivateToilet
-    });
-    console.log(dataPublicToilet);
-    console.log(dataPrivateToilet);
+    if(query.title !== ''){
+      const regexQuery = { title: { $regex: new RegExp(String(query.title), 'i') } };
+      const dataPublicToilet = await Location.find(regexQuery).lean().exec();
+      const dataPrivateToilet = await Toilet.find(regexQuery).lean().exec();
+      if(dataPublicToilet.length > 0 && dataPrivateToilet.length > 0){
+        res.status(200).json({
+          message: 'success',
+          publicToilet: dataPublicToilet,
+          privateToilet: dataPrivateToilet
+        });
+        console.log(dataPublicToilet);
+        console.log(dataPrivateToilet);
+      } else {
+        console.log('No data')
+        res.status(400).json({ msg: 'No results found' });
+      }
+    } else {
+      console.log('No search')
+      res.status(400).json({ msg: 'Please enter place name' });
+    }
   } catch (err) {
     console.log(err);
     res.status(500);
