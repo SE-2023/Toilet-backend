@@ -10,11 +10,11 @@ export const searchToilet= async (req: Request, res: Response) => {
   
   try {
     if(query.title !== ""){
-      const regexQuery = { title: { $regex: new RegExp(`^${query.title}`, 'i') } };
+      const regexQuery = { title: { $regex: new RegExp(`${query.title}`, 'i') } };
       console.log(regexQuery);
       const dataPublicToilet = await Location.find(regexQuery).lean().exec();
       const dataPrivateToilet = await Toilet.find(regexQuery).lean().exec();
-      if(dataPublicToilet.length > 0 && dataPrivateToilet.length > 0){
+      if(dataPublicToilet.length > 0){
         res.status(200).json({
           message: 'success',
           publicToilet: dataPublicToilet,
