@@ -1,6 +1,6 @@
 import { Document, model, ObjectId, Schema, SchemaOptions } from 'mongoose';
 
-interface IUserDocument extends Document {
+interface IToiletDocument extends Document {
     title: string;
     latitude: number;
     longitude: number;
@@ -88,6 +88,6 @@ const toiletSchema = new Schema(
     options
 );
 
-const Toilet = model<IUserDocument>('toilets', toiletSchema);
+const Toilet = model<IToiletDocument>('toilets', toiletSchema);
 
 export default Toilet;

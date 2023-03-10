@@ -18,9 +18,8 @@ const validatePassword = async (enterPassword: string, hash: string, salt: strin
 export const signup = async (req: Request, res: Response) => {
     console.log('createUser work!');
     const body = req.body;
-    
-    try {
 
+    try {
         const salt = await genrateSalt();
         const hash = await generatePassword(body.password, salt);
 
@@ -29,11 +28,13 @@ export const signup = async (req: Request, res: Response) => {
 
         const existingUser = await User.findOne({ email: body.email });
         if (existingUser) {
-            return res.status(400).json({ 
-                errors : [{
-                    msg : "The user already exists",
-                    param : "email"
-                }]
+            return res.status(400).json({
+                errors: [
+                    {
+                        msg: 'The user already exists',
+                        param: 'email',
+                    },
+                ],
             });
         }
 
@@ -61,20 +62,24 @@ export const signin = async (req: Request, res: Response) => {
                 const tokenData = { uid: user._id };
                 const token = jwt.sign(tokenData, process.env.JWT_SECRET!, { expiresIn: '1d' });
                 res.status(200).json({ message: 'success', token: token });
-            } else{
-                res.status(400).json({ 
-                    errors : [{
-                        msg : "Wrong Password",
-                        param : "password",
-                    }]
+            } else {
+                res.status(400).json({
+                    errors: [
+                        {
+                            msg: 'Wrong Password',
+                            param: 'password',
+                        },
+                    ],
                 });
             }
-        } else{
-            res.status(400).json({ 
-                errors : [{
-                    msg : "Not Found Email",
-                    param : "email",
-                }]
+        } else {
+            res.status(400).json({
+                errors: [
+                    {
+                        msg: 'Not Found Email',
+                        param: 'email',
+                    },
+                ],
             });
         }
     } catch (error) {
