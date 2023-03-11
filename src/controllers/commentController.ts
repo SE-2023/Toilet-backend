@@ -61,6 +61,7 @@ export const getComment = async (req: Request, res: Response) => {
                             as: 'result',
                         },
                     },
+                    { $sort: { createdAt: -1 } },
                 ]);
                 if (dataComment.length > 0) {
                     res.status(200).json({
