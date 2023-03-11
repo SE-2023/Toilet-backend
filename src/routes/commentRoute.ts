@@ -1,10 +1,8 @@
 import express from 'express';
-import { createComment } from '../controllers/commentController';
-import { authentication } from '../middleware/verifyHeader';
+import { createComment, getComment } from '../controllers/commentController';
 
 const router = express.Router();
-// router.get('/', getAlltoiletPrivate);
-// router.use(authentication);
+router.get('/', getComment);
 router.post('/', createComment);
 
 export default router;
