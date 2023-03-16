@@ -41,24 +41,30 @@ export const signUpValidation = () => [
 ];
 
 export const toiletValidation = () => [
-    body('Placename')
+    body('toiletPicture')
+        .not().isEmpty()
+        .withMessage('toiletpicture is required'),
+    body('placename')
         .not().isEmpty()
         .withMessage('Placename is required')
         .bail()
         .isLength({ min: 3, max: 20 })
         .withMessage('Placename must be between 3 and 20 characters'),
-    body('contact')
-        .not().isEmpty()
-        .withMessage('Last name is required')
-        .bail()
-        .isLength({ min: 3, max: 20 })
-        .withMessage('Last name must be between 3 and 20 characters'),
     body('cost')
         .not().isEmpty()
-        .withMessage('Phone number is required')
+        .withMessage('Cost is required')
+        .bail()
+        .isNumeric()
+        .withMessage('Cost must be number'),
+    body('contact')
+        .not().isEmpty()
+        .withMessage('Contact is required')
         .bail()
         .isMobilePhone('any')
-        .withMessage('Invalid phone number'),
+        .withMessage('Invalid contact'),
+    body('timeClose')
+        .custom((value, { req }) => value > req.body.timeOpen)
+        .withMessage('TimeClose must be most than timeOpen'),
 ];
 
 export const validate = (req: Request, res: Response, next: NextFunction) => {
