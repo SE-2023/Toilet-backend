@@ -17,11 +17,22 @@ export const updateUser = async (req: Request, res: Response) => {
         const { secure_url } = await uploadImage(req.body.profile_picture);
         console.log(secure_url);
         // const picture_name = secure_url.split('/').pop();
+
+        const existingUser = await User.findOne({ email: req.body.email });
+        if (existingUser && existingUser._id != uid) {
+            return res.status(400).json({ 
+                errors : [{
+                    msg : "The user already exists",
+                    param : "email"
+                }]
+            });
+        }
+
         await User.findByIdAndUpdate(uid, {
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             phone: req.body.phone,
-            // email: req.body.email,
+            email: req.body.email,
             // password: req.body.password,
             // hash: req.body.hash,
             // salt: req.body.salt,
