@@ -11,17 +11,9 @@ export const searchToilet= async (req: Request, res: Response) => {
   try {
     if(query.title !== ""){
       const regexQuery = { title: { $regex: new RegExp(`${query.title}`, 'i') } };
-      console.log(regexQuery);
       const dataPublicToilet = await Location.find(regexQuery).lean().exec();
       const dataPrivateToilet = await Toilet.find(regexQuery).lean().exec();
       const toiletsData = [...dataPrivateToilet, ...dataPublicToilet];
-      // const toiletsData = dataPrivateToilet.concat(dataPublicToilet);
-      // console.log(toiletData);
-      // console.log(dataPublicToilet);
-      // console.log("////////////////////////////////////////////////////////////////");
-      // console.log(dataPrivateToilet);
-      // console.log("////////////////////////////////////////////////////////////////");
-      // console.log(toiletData);
       if(toiletsData.length > 0){
         res.status(200).json({
           message: 'success',
