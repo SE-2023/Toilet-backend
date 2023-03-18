@@ -13,13 +13,13 @@ export const addMyList = async (req: Request, res: Response) => {
 
 export const getMyList = async (req: Request, res: Response) => {
     console.log('getMyList work!');
-    const query = "63ce318c62d75c4f31e30d52";
-    // console.log('getMyList: ', query.userId);
-    const regexQuery = query;
+    const query = req.query;
+    console.log('getMyList: ', query.userId);
+    const regexQuery = query.userId;
     console.log(regexQuery);
     try {
-        if (query.length !== 0) {
-            const regexQuery = query;
+        if (query.toiletId !== '') {
+            const regexQuery = query.userId;
             if (regexQuery) {
                 console.log(regexQuery);
                 const dataMyList: any = await myList.aggregate([
