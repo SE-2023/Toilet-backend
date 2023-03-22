@@ -39,13 +39,13 @@ export const getAlltoiletPrivate = async (req: Request, res: Response) => {
 
 export const getMytoilet = async (req: Request, res: Response) => {
     console.log('getMytoilet work!');
-    const query = '63ce318c62d75c4f31e30d52';
-    console.log('getMytoilet: ', query);
-    const regexQuery = '63ce318c62d75c4f31e30d52';
+    const query = req.query;
+    console.log('getMytoilet: ', query.createBy);
+    const regexQuery = query.createBy;
     console.log(regexQuery);
     try {
-        if (query.length > 0) {
-            const regexQuery = '63ce318c62d75c4f31e30d52';
+        if (query.createBy !== '') {
+            const regexQuery = query.createBy;
             if (regexQuery) {
                 console.log(regexQuery);
                 const dataMytoilet: any = await Toilet.aggregate([
