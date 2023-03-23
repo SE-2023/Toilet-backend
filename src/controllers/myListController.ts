@@ -18,7 +18,7 @@ export const getMyList = async (req: Request, res: Response) => {
     const regexQuery = query.userId;
     console.log(regexQuery);
     try {
-        if (query.toiletId !== '') {
+        if (query.userId !== '') {
             const regexQuery = query.userId;
             if (regexQuery) {
                 console.log(regexQuery);
