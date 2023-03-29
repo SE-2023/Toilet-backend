@@ -68,7 +68,8 @@ export const getMyList = async (req: Request, res: Response) => {
 }
 
 export const deleteMyList = async (req: Request, res: Response) => {
-    myList.findByIdAndRemove(req.body.id)
+    console.log(req.query._id)
+    await myList.findByIdAndRemove(req.query._id)
         .then((data) => {
             console.log(data);
             res.send(data);
