@@ -75,3 +75,35 @@ export const getMytoilet = async (req: Request, res: Response) => {
         res.status(500);
     }
 };
+
+export const updateToilet = async (req: Request, res: Response) => {
+    console.log('updateToilet work!');
+    // const query = req.query;
+    // console.log('getMytoilet: ', query.ToiletId);
+    try {
+        const { secure_url } = await uploadImage(req.body.toiletpicture);
+        console.log(secure_url);
+
+        await Toilet.findByIdAndUpdate(req.body._id, {
+            title: req.body.title,
+            contact: req.body.contact,
+            cost: req.body.cost,
+            handicap: req.body.handicap,
+            type: req.body.type,
+            timeOpen: req.body.timeOpen,
+            timeClose: req.body.timeClose,
+            toiletpicture: secure_url,
+        })
+
+            .then((data) => {
+                console.log(data);
+                res.status(200).json({ data: data });
+            })
+            .catch((err) => {
+                console.log('error', err);
+                res.status(500).json({ message: 'server error' });
+            });
+    } catch (error) {
+        console.log('error', error);
+    }
+};
