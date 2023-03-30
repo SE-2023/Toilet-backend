@@ -78,8 +78,7 @@ export const getMytoilet = async (req: Request, res: Response) => {
 
 export const updateToilet = async (req: Request, res: Response) => {
     console.log('updateToilet work!');
-    // const query = req.query;
-    // console.log('getMytoilet: ', query.ToiletId);
+
     try {
         const { secure_url } = await uploadImage(req.body.toiletpicture);
         console.log(secure_url);
