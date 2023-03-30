@@ -51,7 +51,10 @@ export const getMyList = async (req: Request, res: Response) => {
                     console.log(dataMyList);
                 } else {
                     console.log('No data');
-                    res.status(400).json({ message: 'No results found' });
+                    res.status(200).json({
+                        message: 'not success',
+                        myList: dataMyList,
+                    });
                 }
             } else {
                 console.log('regexQuery is undefined');
