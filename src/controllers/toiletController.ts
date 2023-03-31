@@ -106,3 +106,15 @@ export const updateToilet = async (req: Request, res: Response) => {
         console.log('error', error);
     }
 };
+
+export const deleteMyToilet = async (req: Request, res: Response) => {
+    console.log(req.query._id);
+    await Toilet.findByIdAndRemove(req.query._id)
+        .then((data) => {
+            console.log(data);
+            res.send(data);
+        })
+        .catch((err) => {
+            console.log('error', err);
+        });
+};

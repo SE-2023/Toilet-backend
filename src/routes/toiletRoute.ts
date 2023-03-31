@@ -1,6 +1,7 @@
 import express from 'express';
 import {
     createToilet,
+    deleteMyToilet,
     getAlltoiletPrivate,
     getMytoilet,
     updateToilet,
@@ -12,6 +13,7 @@ const router = express.Router();
 router.get('/', getAlltoiletPrivate);
 router.get('/mytoilet', getMytoilet);
 router.put('/updateToilet', updateToilet);
+router.delete('/delete', deleteMyToilet);
 // router.use(authentication);
 router.post('/', toiletValidation(), validate, createToilet);
 
