@@ -16,6 +16,6 @@ router.put('/updateToilet', updateToilet);
 router.delete('/delete', deleteMyToilet);
 // router.use(authentication);
 // router.post('/', createToilet);
-router.post('/createToilet', createToilet);
+router.post('/createToilet', toiletValidation(), validate, createToilet);
 
 export default router;

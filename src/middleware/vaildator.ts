@@ -78,7 +78,10 @@ export const updateProfileValidation = () => [
 ];
 
 export const toiletValidation = () => [
-    body('toiletPicture').not().isEmpty().withMessage('toiletpicture is required'),
+    // body('toiletPicture')
+    //     .not()
+    //     .isEmpty()
+    //     .withMessage('toiletpicture is required'),
     body('title')
         .not()
         .isEmpty()
@@ -96,10 +99,10 @@ export const toiletValidation = () => [
     body('contact')
         .not()
         .isEmpty()
-        .withMessage('Contact is required')
+        .withMessage('Phone number is required')
         .bail()
-        .isMobilePhone('any')
-        .withMessage('Invalid contact'),
+        .matches(/^0\d{2}-\d{3}-\d{4}$/)
+        .withMessage('Invalid phone number(000-000-0000)'),
     body('timeClose')
         .custom((value, { req }) => value > req.body.timeOpen)
         .withMessage('TimeClose must be most than timeOpen'),
