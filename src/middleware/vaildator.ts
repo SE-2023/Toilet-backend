@@ -7,22 +7,22 @@ export const signUpValidation = () => [
         .isEmpty()
         .withMessage('First name is required')
         .bail()
-        .isLength({ min: 3, max: 20 })
-        .withMessage('First name must be between 3 and 20 characters'),
+        .isLength({ min: 3 })
+        .withMessage('First name must be min 3 characters'),
     body('lastname')
         .not()
         .isEmpty()
         .withMessage('Last name is required')
         .bail()
-        .isLength({ min: 3, max: 20 })
-        .withMessage('Last name must be between 3 and 20 characters'),
+        .isLength({ min: 3 })
+        .withMessage('Last name must be min 3 characters'),
     body('phone')
         .not()
         .isEmpty()
         .withMessage('Phone number is required')
         .bail()
-        .matches(/^0\d{2}-\d{3}-\d{4}$/)
-        .withMessage('Invalid phone number(000-000-0000)'),
+        .matches(/^0\d{9}$/)
+        .withMessage('Invalid phone number'),
     body('email')
         .not()
         .isEmpty()
@@ -52,22 +52,22 @@ export const updateProfileValidation = () => [
         .isEmpty()
         .withMessage('First name is required')
         .bail()
-        .isLength({ min: 3, max: 20 })
-        .withMessage('First name must be between 3 and 20 characters'),
+        .isLength({ min: 3 })
+        .withMessage('First name must be min 3 characters'),
     body('lastname')
         .not()
         .isEmpty()
         .withMessage('Last name is required')
         .bail()
-        .isLength({ min: 3, max: 20 })
-        .withMessage('Last name must be between 3 and 20 characters'),
+        .isLength({ min: 3 })
+        .withMessage('Last name must be min 3 characters'),
     body('phone')
         .not()
         .isEmpty()
         .withMessage('Phone number is required')
         .bail()
-        .matches(/^0\d{2}-\d{3}-\d{4}$/)
-        .withMessage('Invalid phone number(000-000-0000)'),
+        .matches(/^0\d{9}$/)
+        .withMessage('Invalid phone number'),
     body('email')
         .not()
         .isEmpty()
@@ -87,8 +87,8 @@ export const toiletValidation = () => [
         .isEmpty()
         .withMessage('Placename is required')
         .bail()
-        .isLength({ min: 3, max: 20 })
-        .withMessage('Placename must be between 3 and 20 characters'),
+        .isLength({ min: 3 })
+        .withMessage('Placename must be min 3 characters'),
     body('cost')
         .not()
         .isEmpty()
@@ -101,8 +101,8 @@ export const toiletValidation = () => [
         .isEmpty()
         .withMessage('Phone number is required')
         .bail()
-        .matches(/^0\d{2}-\d{3}-\d{4}$/)
-        .withMessage('Invalid phone number(000-000-0000)'),
+        .matches(/^0\d{9}$/)
+        .withMessage('Invalid phone number'),
     body('timeClose')
         .custom((value, { req }) => value > req.body.timeOpen)
         .withMessage('TimeClose must be most than timeOpen'),
