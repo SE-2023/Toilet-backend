@@ -18,6 +18,7 @@ import toiletRouters from './routes/toiletRoute';
 import searchRouters from './routes/searchRoute';
 import commentRouters from './routes/commentRoute';
 import myListRouters from './routes/myListRoute';
+import dashboardRoute from './routes/dashboardRoute';
 
 declare module 'express-session' {
     interface SessionData {
@@ -52,6 +53,7 @@ app.use('/toilet', toiletRouters);
 app.use('/search', searchRouters);
 app.use('/comment', commentRouters);
 app.use('/myList',myListRouters);
+app.use("/dashboard", dashboardRoute)
 
 app.listen(PORT, appStart);
 
