@@ -59,7 +59,20 @@ export const getSummary = async (req: Request, res: Response) => {
 
 export const getTopReview = async (req: Request, res: Response) => {
     try {
-        const reviews = await Comment.find().sort ( { createdAt: 1 } ).limit(5);
+        const reviews = await Comment.aggregate([
+            {
+                $lookup: {
+                    from: 'toilets',
+                    localField: 'toiletId',
+                    foreignField: '_id',
+                    as: 'result',
+                },
+            },
+            { 
+                $sort: { createdAt: -1 } 
+            }
+        ]) 
+        .limit(5);
 
         console.log("top review: ",  reviews)
 
