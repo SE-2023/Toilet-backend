@@ -1,0 +1,24 @@
+name: Deploy DEV
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on:
+      - self-hosted
+      - dev-server
+    steps:
+      - uses: actions/checkout@v3
+      - run: node -v
+      - run: npm install
+      - run: npm run build
+
+  deploy:
+    needs: build
+    runs-on:
+      - self-hosted
+      - dev-server
+    steps:
+      - run: pm2 start ecosystem.config.js --env dev
