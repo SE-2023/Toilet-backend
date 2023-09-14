@@ -36,7 +36,6 @@ jobs:
     - dev-server
 
     steps:
-      - name: Checkout code
       - uses: actions/checkout@v4
       - run: docker build -t my-nodejs-app .
       - run: docker run -d -p 4000:4000 my-nodejs-app
