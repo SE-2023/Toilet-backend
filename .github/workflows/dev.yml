@@ -1,25 +1,51 @@
-name: Deploy DEV
+# name: Deploy DEV
+
+# on:
+#   push:
+#     branches: ["main"]
+
+# jobs:
+#   build:
+#     runs-on:
+#       - self-hosted
+#       - dev-server
+#     steps:
+#       - uses: actions/checkout@v3
+#       - run: node -v
+#       - run: npm install
+#       - run: npm run build
+
+#   deploy:
+#     needs: build
+#     runs-on:
+#       - self-hosted
+#       - dev-server
+#     steps:
+#       - run: pm2 start ecosystem.config.js --env dev
+# # Test1w1231
+
+name: Build and Run Node.js Docker Container
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main"]  # Replace with your branch name
 
 jobs:
-  build:
-    runs-on:
-      - self-hosted
-      - dev-server
+  build-and-run:
+    runs-on: 
+        - self-hosted
+        - dev-server
     steps:
-      - uses: actions/checkout@v3
-      - run: node -v
-      - run: npm install
-      - run: npm run build
+      - name: Checkout code
+        uses: actions/checkout@v3
+        run: node -v
+        run: npm install
+        run: npm run build
 
-  deploy:
-    needs: build
-    runs-on:
-      - self-hosted
-      - dev-server
-    steps:
-      - run: pm2 start ecosystem.config.js --env dev
-# Test1w1231
+      - name: Build Node.js Docker image
+        run: docker build -t my-nodejs-app .
+
+      - name: Run Node.js Docker container
+        run: docker run -d -p 4000:4000 my-nodejs-app  # Adjust port as needed
+
+
