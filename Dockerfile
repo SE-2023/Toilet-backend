@@ -5,7 +5,7 @@ FROM node:18
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package.json package-lock.json ./
+COPY package.json*./
 
 # Install app dependencies
 RUN npm install
@@ -13,7 +13,7 @@ RUN npm install
 # Copy the rest of your application code
 COPY . .
 
-RUN : npm run build
+RUN npm run build
 
 # Expose a port your app will listen on
 EXPOSE 4000
