@@ -1,47 +1,16 @@
-# name: Deploy DEV
-
-# on:
-#   push:
-#     branches: ["main"]
-
-# jobs:
-#   build:
-#     runs-on:
-#       - self-hosted
-#       - dev-server
-#     steps:
-#       - uses: actions/checkout@v3
-#       - run: node -v
-#       - run: npm install
-#       - run: npm run build
-
-#   deploy:
-#     needs: build
-#     runs-on:
-#       - self-hosted
-#       - dev-server
-#     steps:
-#       - run: docker build -t my-nodejs-app
-#       - run: docker run -d -p 4000:4000 my-nodejs-app
-
 name: Deploy DEV
 
 on:
   push:
     branches: ["main"]
 jobs:
-  build-and-run:
+  build:
     runs-on: 
     - self-hosted
     - dev-server
 
     steps:
-      - name: Checkout code
-      - uses: actions/checkout@v3
-
-      - name: Build Node.js Docker image
+      - uses: actions/checkout@v4
       - run: docker build -t my-nodejs-app .
-
-      - name: Run Node.js Docker container
       - run: docker run -d -p 4000:4000 my-nodejs-app
 
