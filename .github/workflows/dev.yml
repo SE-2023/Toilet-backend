@@ -37,11 +37,7 @@ jobs:
 
     steps:
       - name: Checkout code
-      - use: actions/checkout@v4
-
-      - name: Build Node.js Docker image
+      - uses: actions/checkout@v4
       - run: docker build -t my-nodejs-app .
-
-      - name: Run Node.js Docker container
       - run: docker run -d -p 4000:4000 my-nodejs-app
 
