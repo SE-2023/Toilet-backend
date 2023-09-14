@@ -30,7 +30,7 @@ on:
   push:
     branches: ["main"]
 jobs:
-  build-and-run:
+  build:
     runs-on: 
     - self-hosted
     - dev-server
