@@ -37,15 +37,15 @@ jobs:
         - dev-server
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-        run: node -v
-        run: npm install
-        run: npm run build
+      - uses: actions/checkout@v3
+      - run: node -v
+      - run: npm install
+      - run: npm run build
 
       - name: Build Node.js Docker image
-        run: docker build -t my-nodejs-app .
+      - run: docker build -t my-nodejs-app .
 
       - name: Run Node.js Docker container
-        run: docker run -d -p 4000:4000 my-nodejs-app  # Adjust port as needed
+      - run: docker run -d -p 4000:4000 my-nodejs-app  # Adjust port as needed
 
 
